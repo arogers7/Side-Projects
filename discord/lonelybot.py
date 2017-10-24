@@ -90,6 +90,25 @@ async def cheer(*args):
 	else:
 		return await lonely.say("you made a typo you cabbage")
 
+@lonely.command()
+async def feedback(*args):
+	if (len(args)):
+		emailBody = convertSearch(args)
+		address = "lonelybot1000@gmail.com"
+		email = MIMEMultipart()
+		email['Subject'] = "Lonely Bot Feedback"
+		menteeMSG['From'] = address
+
+		server = smtplib.SMTP('smtp.gmail.com',587)
+		server.starttls()
+		server.login(address,'insecureaccount')
+		email.attach(MIMEText(emailBody,'plain'))
+		server.sendmail(address,"arogers7@buffalo.edu",emailBody)
+		server.quit()
+
+		return await lonely.say("Thank you for the feedback! You're a good noodle <3")
+	else:
+		return await lonely.say("Why would you send nothing as feedback. That doesn't make me feel very special.")
 
 @lonely.command()
 async def tvtropes(*args):
