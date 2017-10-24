@@ -51,18 +51,18 @@ async def waifu(*args):
 async def judge(*args):
 #sometimes you just need someone to know that you're judging them for their choices, but you don't have the eyes of judgment on your clipboard
 	return await lonely.say("ಠ_ಠ ")
-
+@lonely.command()
 async def shrug(*args):
-#sometimes you just need someone to know that you're judging them for their choices, but you don't have the eyes of judgment on your clipboard
 	return await lonely.say("¯\_(ツ)_/¯ ")
-
+@lonely.command()
 async def lenny(*args):
-#sometimes you just need someone to know that you're judging them for their choices, but you don't have the eyes of judgment on your clipboard
 	return await lonely.say("(° ͜ʖ°)")
-
+@lonely.command()
 async def lobster(*args):
-#sometimes you just need someone to know that you're judging them for their choices, but you don't have the eyes of judgment on your clipboard
 	return await lonely.say("(/) (°,,°) (/)")
+@lonely.command()
+async def angry(*args):
+	return await lonely.say("{(>_<)}")
 
 @lonely.command()
 async def gim(*args):
