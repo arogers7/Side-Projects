@@ -4,7 +4,7 @@ I've uploaded two of my personal projects so far, my auto-emailer and discord bo
 
 #### Discord Bot
 
-There are a variety of text emoji based functions of this bot to make them easier to access, including ಠ_ಠ, ¯\\\_(ツ)_/¯, (/) (°,,°) (/), and {(>____<)}.
+There are a variety of text emoji based functions of this bot to make them easier to access, including ಠ_ಠ, ¯\\\_(ツ)__/¯, (/) (°,,°) (/), and {(>____<)}.
 
 The most complicated functions of this bot would be waifu and gim. Both of them take in arguments and search either danbooru.donmai.us/ or images.google.com to search for the user's desired images. I learned basic web scraping and how to read specific parts of HTML tags to write these.
 
