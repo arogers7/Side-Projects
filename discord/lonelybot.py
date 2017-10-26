@@ -3,8 +3,11 @@ import asyncio
 import requests
 import random
 from bs4 import BeautifulSoup
-
 from discord.ext.commands import Bot
+import smtplib
+from email.mime.multipart import MIMEMultipart
+from email.mime.text import MIMEText
+
 
 #client = discord.Client()
 lonely = Bot(command_prefix="^")
@@ -97,7 +100,7 @@ async def feedback(*args):
 		address = "lonelybot1000@gmail.com"
 		email = MIMEMultipart()
 		email['Subject'] = "Lonely Bot Feedback"
-		menteeMSG['From'] = address
+		email['From'] = address
 
 		server = smtplib.SMTP('smtp.gmail.com',587)
 		server.starttls()
