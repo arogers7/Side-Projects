@@ -11,10 +11,18 @@ from email.mime.text import MIMEText
 
 #client = discord.Client()
 lonely = Bot(command_prefix="^")
+
 def getSoup(url):
 #since I'm always using bs's html parser, I made a command to take in a url and do everything I need from beautiful soup
 	r = requests.get(url)
 	return BeautifulSoup(r.content,'html.parser')
+
+def convertMessage(args):
+	str = args[0]
+	for i in range(1,len(args)):
+		str = str + " " + args[i]
+	return str
+
 
 def convertSearch(args):
 #convers the arguments into a string from an array
@@ -94,9 +102,15 @@ async def cheer(*args):
 		return await lonely.say("you made a typo you cabbage")
 
 @lonely.command()
+async def commands(*args):
+		return await lonely.say("""^waifu: search for your waifu\n^judge/shrug/lenny/angry: sends an text emoji\n^gim: google image search\n^cheer me up: sends a cheesy pick up link\n^feedback: if you'd like to see another function, or you found a bug, please use the feedback function to let me know""")
+
+
+
+@lonely.command()
 async def feedback(*args):
 	if (len(args)):
-		emailBody = convertSearch(args)
+		emailBody = convertMessage(args)
 		address = "lonelybot1000@gmail.com"
 		email = MIMEMultipart()
 		email['Subject'] = "Lonely Bot Feedback"
