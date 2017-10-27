@@ -105,6 +105,13 @@ async def cheer(*args):
 async def commands(*args):
 		return await lonely.say("""^waifu: search for your waifu\n^judge/shrug/lenny/angry: sends an text emoji\n^gim: google image search\n^cheer me up: sends a cheesy pick up link\n^feedback: if you'd like to see another function, or you found a bug, please use the feedback function to let me know""")
 
+@lonely.command()
+async def whatdidyou(*args):
+#prints the navy seal copypasta
+	message = open('navyseal.txt','r',encoding="utf8").read()
+	return await lonely.say(message)
+#charlimit = 2000
+
 
 
 @lonely.command()
