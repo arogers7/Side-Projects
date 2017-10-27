@@ -29,6 +29,9 @@ for i in range(len(mentorStanding)):
 
     temptext = """Hello {},\n\nThank you for participating in the Undergraduate Biology Association's mentorship program! You have been matched with {}, a {} {} major who is interested in """
 
+
+
+
     if (menteeCareer[i] == "Medical School" or menteeCareer[i] == "Dental School"):
         temptext += "attending {}"
     elif (menteeCareer[i] == "PhD"):
@@ -40,7 +43,7 @@ for i in range(len(mentorStanding)):
     else:
          temptext += " {}"
 
-    temptext += ".{}" 
+    temptext += ".{}"
 
     temptext += """Please reach out to {} at {} before classes start on August 28th. Together, you should work out a place and time to meet early in the semester.
 

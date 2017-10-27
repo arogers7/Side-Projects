@@ -2,6 +2,7 @@ import discord
 import asyncio
 import requests
 import random
+import time as t
 from bs4 import BeautifulSoup
 from discord.ext.commands import Bot
 import smtplib
@@ -103,14 +104,31 @@ async def cheer(*args):
 
 @lonely.command()
 async def commands(*args):
-		return await lonely.say("""^waifu: search for your waifu\n^judge/shrug/lenny/angry: sends an text emoji\n^gim: google image search\n^cheer me up: sends a cheesy pick up link\n^feedback: if you'd like to see another function, or you found a bug, please use the feedback function to let me know""")
+		return await lonely.say("""^waifu: search for your waifu\n^judge/shrug/lenny/angry: sends an text emoji\n^gim: google image search\n^cheer me up: sends a cheesy pick up link\n^feedback: if you'd like to see another function, or you found a bug, please use the feedback function to let me know\n^whatdidyousay: sends the navy seal copypasta""")
 
 @lonely.command()
 async def whatdidyou(*args):
-#prints the navy seal copypasta
+#says the navy seal copypasta
 	message = open('navyseal.txt','r',encoding="utf8").read()
 	return await lonely.say(message)
-#charlimit = 2000
+
+@lonely.command()
+async def favoritemovie(*args):
+#crashes bot, only sends first message
+	charLimit = 2000
+	timestop = 4
+	script = open('beemoviescript.txt','r',encoding="utf8").read().splitlines()
+
+	printableString = ""
+	for line in script:
+		if (len(printableString)+len(line) < charLimit):
+			printableString += "\n"+line
+		else:
+			await lonely.say(printableString)
+			#t.sleep(timestop)
+			print(printableString)
+			printableString = ""
+	return await lonely.say(printableString)
 
 
 
