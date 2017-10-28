@@ -162,7 +162,7 @@ async def feedback(*args):
 
 @lonely.command()
 async def tvtropes(*args):
-	#this line loads the search with the properly formatted args, not completed, still very glitchy
+	#this line loads the search with the properly formatted args, not functional
 	soup = getSoup("http://tvtropes.org/pmwiki/search_result.php?q={}&cx=partner-pub-6610802604051523%3Aamzitfn8e7v&cof=FORID%3A10&ie=ISO-8859-1&siteurl=&ref=&ss=".format(convertSearch(args)))
 
 lonely.run("MzQ1MDI0NjYzMzE2ODU2ODMy.DG1dag.7XJi3Gc6TW4_mVCg4a1wuet9Isc")
