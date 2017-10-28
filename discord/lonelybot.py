@@ -104,7 +104,7 @@ async def cheer(*args):
 
 @lonely.command()
 async def commands(*args):
-		return await lonely.say("""^waifu: search for your waifu\n^judge/shrug/lenny/angry: sends an text emoji\n^gim: google image search\n^cheer me up: sends a cheesy pick up link\n^feedback: if you'd like to see another function, or you found a bug, please use the feedback function to let me know\n^whatdidyousay: sends the navy seal copypasta""")
+		return await lonely.say("""^waifu: search for your waifu\n^judge/shrug/lenny/angry: sends an text emoji\n^gim: google image search\n^cheer me up: sends a cheesy pick up link\n^feedback: if you'd like to see another function, or you found a bug, please use the feedback function to let me know\n^whatdidyousay: sends the navy seal copypasta\n^haiku: sends a randomized haiku""")
 
 @lonely.command()
 async def whatdidyou(*args):
@@ -116,7 +116,6 @@ async def whatdidyou(*args):
 async def favoritemovie(*args):
 #crashes bot, only sends first message
 	charLimit = 2000
-	timestop = 4
 	script = open('beemoviescript.txt','r',encoding="utf8").read().splitlines()
 
 	printableString = ""
@@ -125,11 +124,20 @@ async def favoritemovie(*args):
 			printableString += "\n"+line
 		else:
 			await lonely.say(printableString)
-			#t.sleep(timestop)
 			print(printableString)
 			printableString = ""
 	return await lonely.say(printableString)
 
+@lonely.command()
+async def haiku(*args):
+	haikus = open('haikus.txt','r',encoding="utf8").read().splitlines()
+	startindex = random.randrange(len(haikus))
+	remainder = startindex % 4
+	startindex = startindex - remainder
+	finalstring = haikus[startindex] + "\n"
+	for i in range(1,3):
+		finalstring += haikus[startindex+i] +"\n"
+	return await lonely.say(finalstring)
 
 
 @lonely.command()
