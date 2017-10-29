@@ -93,7 +93,6 @@ async def gim(*args):
 async def hello(*args):
 	return await lonely.say("Hello world")
 
-
 @lonely.command()
 async def cheer(*args):
 	phrases = ["Are you a magician? Because whenever I look at you, everyone else disappears!","Did you sit in a pile of sugar? Cause you have a pretty sweet ass.","Do you know what my shirt is made of? Boyfriend material.","Are you a camera? Because every time I look at you, I smile.","Do you have a Band-Aid? Because I just scraped my knee falling for you.","Do you work at Starbucks? Because I like you a latte.","If you were a vegetable you'd be a cute-cumber.","If you stood in front of a mirror and held up 11 roses, you would see 12 of the most beautiful things in the world.","If nothing lasts forever, will you be my nothing?","If you were a fruit, you would be a fineapple. And if you were a vegetable, I would visit you every day in hospital"]
@@ -117,7 +116,6 @@ async def favoritemovie(*args):
 #crashes bot, only sends first message
 	charLimit = 2000
 	script = open('beemoviescript.txt','r',encoding="utf8").read().splitlines()
-
 	printableString = ""
 	for line in script:
 		if (len(printableString)+len(line) < charLimit):
@@ -132,10 +130,10 @@ async def favoritemovie(*args):
 async def haiku(*args):
 	haikus = open('haikus.txt','r',encoding="utf8").read().splitlines()
 	startindex = random.randrange(len(haikus))
-	remainder = startindex % 4
-	startindex = startindex - remainder
-	finalstring = haikus[startindex] + "\n"
-	for i in range(1,3):
+	#the following line reassigns the start from a random line to the start of the haiku it intercepts
+	startindex = startindex - startindex % 4
+	finalstring = ""
+	for i in range(0,3):
 		finalstring += haikus[startindex+i] +"\n"
 	return await lonely.say(finalstring)
 
@@ -162,7 +160,7 @@ async def feedback(*args):
 
 @lonely.command()
 async def tvtropes(*args):
-	#this line loads the search with the properly formatted args, not functional
+	#this line loads the search with the properly formatted args, not functional, I'll try to make something functional when I have some time to kill
 	soup = getSoup("http://tvtropes.org/pmwiki/search_result.php?q={}&cx=partner-pub-6610802604051523%3Aamzitfn8e7v&cof=FORID%3A10&ie=ISO-8859-1&siteurl=&ref=&ss=".format(convertSearch(args)))
 
 lonely.run("MzQ1MDI0NjYzMzE2ODU2ODMy.DG1dag.7XJi3Gc6TW4_mVCg4a1wuet9Isc")
