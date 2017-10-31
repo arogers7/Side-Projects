@@ -103,17 +103,23 @@ async def cheer(*args):
 
 @lonely.command()
 async def commands(*args):
-		return await lonely.say("""^waifu: search for your waifu\n^judge/shrug/lenny/angry: sends an text emoji\n^gim: google image search\n^cheer me up: sends a cheesy pick up link\n^feedback: if you'd like to see another function, or you found a bug, please use the feedback function to let me know\n^whatdidyousay: sends the navy seal copypasta\n^haiku: sends a randomized haiku""")
+	return await lonely.say("""^waifu: search for your waifu\n^judge/shrug/lenny/angry: sends an text emoji\n^gim: google image search\n^cheer me up: sends a cheesy pick up link\n^feedback: if you'd like to see another function, or you found a bug, please use the feedback function to let me know\n^navy: sends the navy seal copypasta with no args, sends the weeb version with the weeb arg\n^haiku: sends a randomized haiku""")
 
 @lonely.command()
-async def whatdidyou(*args):
+async def hug(*args):
+	return await lonely.say("https://i.pinimg.com/originals/d3/d1/5b/d3d15bcd6e858a053af9e2ce28173fa1.jpg")
+
+@lonely.command()
+async def navy(*args):
 #says the navy seal copypasta
-	message = open('navyseal.txt','r',encoding="utf8").read()
+	if (len(args) == 0 or args[0] == "navy" or args[0] == "navy seal" or args[0] == "navyseal"):
+		message = open('navyseal.txt','r',encoding="utf8").read()
+	elif (args[0] == "weeb" or args[0] == " with no args, sends the weeb version with the weeb argweeby"):
+		message = open('weebcopy.txt','r',encoding="utf8").read()
 	return await lonely.say(message)
 
 @lonely.command()
 async def favoritemovie(*args):
-#crashes bot, only sends first message
 	charLimit = 2000
 	script = open('beemoviescript.txt','r',encoding="utf8").read().splitlines()
 	printableString = ""
