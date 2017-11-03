@@ -82,7 +82,7 @@ async def gim(*args):
 	if (len(args) != 0):
 		search = convertSearch(args)
 	else:
-		search = "star+of+david"
+		search = "nice+jewish+boys"
 	soup = getSoup("https://www.google.com/search?tbm=isch&q={}".format(search))
 	urllist = []
 	for link in soup.find_all('img'):
@@ -136,7 +136,6 @@ async def favoritemovie(*args):
 async def haiku(*args):
 	haikus = open('haikus.txt','r',encoding="utf8").read().splitlines()
 	startindex = random.randrange(len(haikus))
-	#the following line reassigns the start from a random line to the start of the haiku it intercepts
 	startindex = startindex - startindex % 4
 	finalstring = ""
 	for i in range(0,3):
