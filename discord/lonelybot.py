@@ -77,8 +77,7 @@ async def angry(*args):
 	return await lonely.say("{(>_<)}")
 
 @lonely.command()
-async def gim(*args):
-#google image search
+async def gim(*args):#google image search, defaults to nice jewish boys
 	if (len(args) != 0):
 		search = convertSearch(args)
 	else:
@@ -113,15 +112,15 @@ async def hug(*args):
 async def navy(*args):
 #says the navy seal copypasta
 	if (len(args) == 0 or args[0] == "navy" or args[0] == "navy seal" or args[0] == "navyseal"):
-		message = open('navyseal.txt','r',encoding="utf8").read()
+		message = open('textfiles/navyseal.txt','r',encoding="utf8").read()
 	elif (args[0] == "weeb" or args[0] == " with no args, sends the weeb version with the weeb argweeby"):
-		message = open('weebcopy.txt','r',encoding="utf8").read()
+		message = open('textfiles/weebcopy.txt','r',encoding="utf8").read()
 	return await lonely.say(message)
 
 @lonely.command()
 async def favoritemovie(*args):
 	charLimit = 2000
-	script = open('beemoviescript.txt','r',encoding="utf8").read().splitlines()
+	script = open('textfiles/beemoviescript.txt','r',encoding="utf8").read().splitlines()
 	printableString = ""
 	for line in script:
 		if (len(printableString)+len(line) < charLimit):
@@ -134,7 +133,7 @@ async def favoritemovie(*args):
 
 @lonely.command()
 async def haiku(*args):
-	haikus = open('haikus.txt','r',encoding="utf8").read().splitlines()
+	haikus = open('textfiles/haikus.txt','r',encoding="utf8").read().splitlines()
 	startindex = random.randrange(len(haikus))
 	startindex = startindex - startindex % 4
 	finalstring = ""
@@ -158,7 +157,6 @@ async def feedback(*args):
 		email.attach(MIMEText(emailBody,'plain'))
 		server.sendmail(address,"arogers7@buffalo.edu",emailBody)
 		server.quit()
-
 		return await lonely.say("Thank you for the feedback! You're a good noodle <3")
 	else:
 		return await lonely.say("Why would you send nothing as feedback. That doesn't make me feel very special.")
