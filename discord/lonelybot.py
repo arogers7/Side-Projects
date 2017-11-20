@@ -15,22 +15,18 @@ async def on_ready():
 
 @lonely.command()
 async def waifu(*args):
+	"""Sends pictures of cute anime girls"""
 	if (len(args) == 0):
 		search = "holo"
 	else:
 		search = helper.convertSearch(args)
-
 	message = "Here's a waifu, you weeby fuck: "
-
 	soup = helper.getSoup("http://danbooru.donmai.us/posts?utf8=%E2%9C%93&tags={}&ms=1".format(search))
-
 	urls = []
 	for link in soup.find_all('img'):
 	    urls.append(link.parent.get('href'))
-
 	if (len(urls) == 0):
 		return await lonely.say("No results. Your waifu is shit.")
-
 	soup = helper.getSoup('http://danbooru.donmai.us/' + random.choice(urls))
 	for link in soup.find_all('img'):
 	    return await lonely.say(message + 'http://danbooru.donmai.us' + str(link.get('src')))
