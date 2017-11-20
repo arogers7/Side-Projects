@@ -2,35 +2,14 @@ import discord
 import asyncio
 import requests
 import random
-import time as t
-from bs4 import BeautifulSoup
 from discord.ext.commands import Bot
+import helper
 import smtplib
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 
-
-#client = discord.Client()
+#this means to call any commands
 lonely = Bot(command_prefix="^")
-
-def getSoup(url):
-#since I'm always using bs's html parser, I made a command to take in a url and do everything I need from beautiful soup
-	r = requests.get(url)
-	return BeautifulSoup(r.content,'html.parser')
-
-def convertMessage(args):
-	str = args[0]
-	for i in range(1,len(args)):
-		str = str + " " + args[i]
-	return str
-
-
-def convertSearch(args):
-#convers the arguments into a string from an array
-	str = args[0]
-	for i in range(1,len(args)):
-		str = str + "+" + args[i]
-	return str
 
 @lonely.event
 async def on_ready():
@@ -42,11 +21,11 @@ async def waifu(*args):
 	if (len(args) == 0):
 		search = "holo"
 	else:
-		search = convertSearch(args)
+		search = helper.convertSearch(args)
 
 	message = "Here's a waifu, you weeby fuck: "
 
-	soup = getSoup("http://danbooru.donmai.us/posts?utf8=%E2%9C%93&tags={}&ms=1".format(search))
+	soup = helper.getSoup("http://danbooru.donmai.us/posts?utf8=%E2%9C%93&tags={}&ms=1".format(search))
 
 	urls = []
 	for link in soup.find_all('img'):
@@ -55,7 +34,7 @@ async def waifu(*args):
 	if (len(urls) == 0):
 		return await lonely.say("No results. Your waifu is shit.")
 
-	soup = getSoup('http://danbooru.donmai.us/' + random.choice(urls))
+	soup = helper.getSoup('http://danbooru.donmai.us/' + random.choice(urls))
 	for link in soup.find_all('img'):
 	    return await lonely.say(message + 'http://danbooru.donmai.us' + str(link.get('src')))
 
@@ -67,8 +46,8 @@ async def judge(*args):
 async def shrug(*args):
 	return await lonely.say("¯\_(ツ)_/¯ ")
 @lonely.command()
-async def lenny(*args):
-	return await lonely.say("(° ͜ʖ°)")
+async def fite(*args):
+	return await lonely.say("(ง'̀-'́)ง")
 @lonely.command()
 async def lobster(*args):
 	return await lonely.say("(/) (°,,°) (/)")
@@ -79,10 +58,10 @@ async def angry(*args):
 @lonely.command()
 async def gim(*args):#google image search, defaults to nice jewish boys
 	if (len(args) != 0):
-		search = convertSearch(args)
+		search = helper.convertSearch(args)
 	else:
 		search = "nice+jewish+boys"
-	soup = getSoup("https://www.google.com/search?tbm=isch&q={}".format(search))
+	soup = helper.getSoup("https://www.google.com/search?tbm=isch&q={}".format(search))
 	urllist = []
 	for link in soup.find_all('img'):
 		urllist.append(link.get('src'))
@@ -106,7 +85,7 @@ async def commands(*args):
 
 @lonely.command()
 async def hug(*args):
-	return await lonely.say("https://i.pinimg.com/originals/d3/d1/5b/d3d15bcd6e858a053af9e2ce28173fa1.jpg")
+	return await lonely.say(" (> ^-^)>\nhttps://i.pinimg.com/originals/d3/d1/5b/d3d15bcd6e858a053af9e2ce28173fa1.jpg")
 
 @lonely.command()
 async def navy(*args):
@@ -127,7 +106,6 @@ async def favoritemovie(*args):
 			printableString += "\n"+line
 		else:
 			await lonely.say(printableString)
-			print(printableString)
 			printableString = ""
 	return await lonely.say(printableString)
 
@@ -141,11 +119,10 @@ async def haiku(*args):
 		finalstring += haikus[startindex+i] +"\n"
 	return await lonely.say(finalstring)
 
-
 @lonely.command()
 async def feedback(*args):
 	if (len(args)):
-		emailBody = convertMessage(args)
+		emailBody = helper.convertMessage(args)
 		address = "lonelybot1000@gmail.com"
 		email = MIMEMultipart()
 		email['Subject'] = "Lonely Bot Feedback"
@@ -160,10 +137,5 @@ async def feedback(*args):
 		return await lonely.say("Thank you for the feedback! You're a good noodle <3")
 	else:
 		return await lonely.say("Why would you send nothing as feedback. That doesn't make me feel very special.")
-
-@lonely.command()
-async def tvtropes(*args):
-	#this line loads the search with the properly formatted args, not functional, I'll try to make something functional when I have some time to kill
-	soup = getSoup("http://tvtropes.org/pmwiki/search_result.php?q={}&cx=partner-pub-6610802604051523%3Aamzitfn8e7v&cof=FORID%3A10&ie=ISO-8859-1&siteurl=&ref=&ss=".format(convertSearch(args)))
 
 lonely.run("MzQ1MDI0NjYzMzE2ODU2ODMy.DG1dag.7XJi3Gc6TW4_mVCg4a1wuet9Isc")
