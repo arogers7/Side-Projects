@@ -1,4 +1,5 @@
 from bs4 import BeautifulSoup
+import requests
 
 def getSoup(url):
     """This helps to call beautifulSoup, since I'm always using bs's html parser, I made a command to take in a url and do everything I need from beautiful soup."""
@@ -10,7 +11,7 @@ def convertMessage(args):
     str = args[0]
     for i in range(1,len(args)):
         str = str + " " + args[i]
-        return str
+    return str
 
 def convertSearch(args):
     """converts the arguments given by discord into a usable url for beautiful soup."""
