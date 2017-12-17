@@ -1,6 +1,6 @@
-file = open('textfiles/navyseal.txt','r',encoding="utf8").read()
-print(file)
-
+import helper
+args = ['abc','def']
+print(helper.convertSearch(args))
 
 """
 ##This is what I wrote to convert book of haikus into a format that was more useful to my bot, I was too proud to delete it :)"
