@@ -6,7 +6,7 @@ I've uploaded two of my personal projects so far, my auto-emailer and discord bo
 This is a chat bot for discord.
 
 #### Auto-emailer
-This was intended to be used to automate the emailing of student matches in UBA's mentorship program. Students information was collected with a google forms survey, which output them as a .xlsx file. Using excel's sort function, students are seperated by year (freshmen as mentees and juniors, seniors, and sophomores as mentors) then matched based on major and career goals. Saved as a .csv file, it's added an argument to the program. The auto-emailer then sends personalized emails to all participants, giving them the name, major, career goals, and contact info of their match.
+This was intended to be used to automate the emailing of student matches in UBA's mentorship program. 
 
 #### Goats and Cars
 This is a model of the Monty Hall problem.
